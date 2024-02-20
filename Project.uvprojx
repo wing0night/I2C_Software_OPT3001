@@ -729,6 +729,11 @@
               <FileType>1</FileType>
               <FilePath>.\Hardware\math.c</FilePath>
             </File>
+            <File>
+              <FileName>math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\math.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
