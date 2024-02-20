@@ -61,14 +61,7 @@ void MyI2C_SendByte(uint8_t Byte){
 	}
 }
 
-void MyI2C_Send2Byte(uint16_t Byte){
-	uint8_t i;
-	for(i = 0; i<16; i++){
-		MyI2C_W_SDA(Byte & (0x8000 >> i));//此处用按位与的方式依次取出Byte的最高位
-		MyI2C_W_SCL(1);//释放SCL，读数据
-		MyI2C_W_SCL(0);//拉低SCL，继续读数据
-	}
-}
+
 
 uint8_t MyI2C_ReceiveByte(void){
 	uint8_t Byte = 0x00, i;
@@ -121,7 +114,20 @@ uint16_t MyI2C_Receive2Byte(void){
 	return Byte;
 }
 
-
+void MyI2C_Send2Byte(uint16_t Byte){
+	uint8_t i;
+	for(i = 0; i<8; i++){
+		MyI2C_W_SDA(Byte & (0x8000 >> i));//此处用按位与的方式依次取出Byte的最高位
+		MyI2C_W_SCL(1);//释放SCL，读数据
+		MyI2C_W_SCL(0);//拉低SCL，继续读数据
+	}
+	MyI2C_ReceiveAck();
+	for(i = 0; i<8; i++){
+		MyI2C_W_SDA(Byte & (0x8000 >> (i+8)));//此处用按位与的方式依次取出Byte的最高位
+		MyI2C_W_SCL(1);//释放SCL，读数据
+		MyI2C_W_SCL(0);//拉低SCL，继续读数据
+	}
+}
 
 
 

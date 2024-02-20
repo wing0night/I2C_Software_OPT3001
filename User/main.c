@@ -10,16 +10,26 @@ int main(void)
 	
 	OPT3001_Init();
 	
-	//OPT3001_WriteReg(0x01, 0x0000);
+	OPT3001_WriteReg(0x01, 0xC610);//配置改成CE10响应变慢，不过噪声会变小
 	
-	uint16_t ID = OPT3001_ReadReg(0x01);
+	uint16_t MAN_ID = OPT3001_ReadReg(0x7E);
 	
-	OLED_ShowHexNum(1, 1, ID, 4);
+	
 	
 	while (1)
 	{
+		uint16_t Result = OPT3001_ReadReg(0x00);
+	
+		OLED_ShowString(1, 1, "ManufacturerID:");
+	
+		OLED_ShowHexNum(2, 1, MAN_ID, 4);
+	
+		OLED_ShowString(3, 1, "Result(lx)");
 		
+		//Optical_Strength = 
+	
+		OLED_ShowHexNum(4, 1, Result, 4);
 		
-		//Delay_ms(50);
+		Delay_ms(10);
 	}
 }

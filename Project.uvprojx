@@ -724,6 +724,11 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\OPT3001.h</FilePath>
             </File>
+            <File>
+              <FileName>math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\math.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

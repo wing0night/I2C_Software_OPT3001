@@ -4,12 +4,18 @@
 
 //先来封装指定地址读和指定地址写
 void OPT3001_WriteReg(uint8_t RegAddress, uint16_t Data){//opt3001的ADDRESS是8位，而data是16位
+	
+	uint8_t Data_Low;
+	Data_Low = 0x00FF & Data;
+	
 	MyI2C_Start();//开启传输
 	MyI2C_SendByte(0x88);//从机地址
 	MyI2C_ReceiveAck();
 	MyI2C_SendByte(RegAddress);//指定寄存器地址（存在OPT3001的当前地址指针）
 	MyI2C_ReceiveAck();
-	MyI2C_Send2Byte(Data);
+	MyI2C_SendByte(Data >> 8);
+	MyI2C_ReceiveAck();
+	MyI2C_SendByte(Data_Low);
 	MyI2C_ReceiveAck();
 	MyI2C_Stop();
 }
