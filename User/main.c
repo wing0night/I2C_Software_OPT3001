@@ -44,6 +44,8 @@ int main(void)
 		pow = mypow(2, index);
 		remain = Result & 0x0FFF;
 		Result_lx = pow * De_Num(remain);//此处得到的lx还没乘0.01，因此结果中实际上最后两位是小数
+		uint32_t integer = Result_lx / 100;
+		uint32_t fractional = Result_lx - 100 * integer;
 		
 		/*pow = two_pow(Result >> 12);
 		hexnum = Result & 0x0FFF;
@@ -51,8 +53,9 @@ int main(void)
 		uint32_t Optical_Strength = 0.01 * pow * remain_de;*/
 	
 		//OLED_ShowHexNum(4, 1, Result, 4);
-		OLED_ShowNum(4, 1, Result_lx, 8);
-		
+		OLED_ShowNum(4, 1, integer, 6);
+		OLED_ShowChar(4, 7, '.');
+		OLED_ShowNum(4, 8, fractional, 2);
 		
 		Delay_ms(10);
 	}
