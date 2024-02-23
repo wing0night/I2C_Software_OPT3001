@@ -4,6 +4,7 @@
 #include "MyI2C.h"
 #include "OPT3001.h"
 #include "stdlib.h"
+#include "math.h"
 
 int main(void)
 {
@@ -19,8 +20,18 @@ int main(void)
 	
 	while (1)
 	{
-		uint16_t pow, remain_de, hexnum;
+		uint16_t pow, index, remain, Result_lx;
 		uint16_t Result = OPT3001_ReadReg(0x00);
+		//uint16_t Result = 0x2356;//For test
+		
+		//测试De_Num函数成功
+		//uint16_t test = 0x0111;
+		//uint32_t test_2 = De_Num(test);
+		
+		//测试mypow函数成功
+		//uint16_t test = 0x0011;	
+		//uint32_t test_2;
+		//test_2 = mypow(test, 2);
 	
 		OLED_ShowString(1, 1, "ManufacturerID:");
 	
@@ -28,13 +39,19 @@ int main(void)
 	
 		OLED_ShowString(3, 1, "Result(lx)");
 		
-		pow = two_pow(Result >> 12);
+		//换算
+		index = Result >> 12;
+		pow = mypow(2, index);
+		remain = Result & 0x0FFF;
+		Result_lx = pow * De_Num(remain);//此处得到的lx还没乘0.01，因此结果中实际上最后两位是小数
+		
+		/*pow = two_pow(Result >> 12);
 		hexnum = Result & 0x0FFF;
 		remain_de = De_Num(hexnum);
-		uint32_t Optical_Strength = 0.01 * pow * remain_de;
+		uint32_t Optical_Strength = 0.01 * pow * remain_de;*/
 	
 		//OLED_ShowHexNum(4, 1, Result, 4);
-		OLED_ShowHexNum(4, 1, Result, 4);
+		OLED_ShowNum(4, 1, Result_lx, 8);
 		
 		
 		Delay_ms(10);

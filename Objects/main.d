@@ -33,3 +33,4 @@
 .\objects\main.o: .\Hardware\MyI2C.h
 .\objects\main.o: .\Hardware\OPT3001.h
 .\objects\main.o: E:\Software\Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: .\Hardware\math.h
