@@ -14,7 +14,7 @@ Code with Keil.
 The test was as following. You can use this module to read the strength of the light. The unit is lx.
 
 
-<video controls src="[images/opt3002.mp4](https://github.com/wing0night/I2C_Software_OPT3001/assets/119767073/d7b2271e-64a5-4158-a506-1b18b9861e08)" title="Title" autoplay = "autoplay"></video>
+<video controls src="https://github.com/wing0night/I2C_Software_OPT3001/assets/119767073/d7b2271e-64a5-4158-a506-1b18b9861e08" title="Title" autoplay = "autoplay"></video>
 
 The total cost of this work: process of self-made board costs ￥20, the stm32 MCU costs ￥10. 
 
