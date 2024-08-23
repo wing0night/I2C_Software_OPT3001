@@ -24,5 +24,9 @@ The PCB is like
 
 I just connect the SCL and SDA through a resistance to 3v3 power supply, and other components are as the technological manal recommended.
 
+# Run the code 
+
+First unzip the Library.zip and Start.zip 
+
 
 
